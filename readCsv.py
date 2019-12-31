@@ -1,4 +1,5 @@
 import csv
+from pymongo import MongoClient
 
 class read:
 
@@ -28,5 +29,34 @@ class read:
 					for index,item in enumerate(headers):
 						print(index)
 					#print("Item - " + row[2] + "\nMy price - " + myPrice + "\nLowest Price - " + lowestPrice + "\nLive Quantity - " + row[11] + "\n\n")
-		
-		
+	def getCats(self):
+		client = MongoClient('localhost', 27017)
+		db = client.TT
+		collection = db.sales
+
+		allDocs = collection.find({})
+		productCats = []
+		for document in allDocs:
+			if document["Product Category"] not in productCats:
+				productCats.append(document["Product Category"])
+		print productCats
+	
+	def getItemsByCat(self, category):
+		client = MongoClient('localhost', 27017)
+		db = client.TT
+		collection = db.sales
+
+		allDocs = collection.find({"Product Category": category })
+		items = []
+		for document in allDocs:
+			items.append(document)
+		return items
+
+
+
+
+
+
+
+
+

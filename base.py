@@ -10,3 +10,12 @@ if jobType == "--import":
 elif jobType == "--read":
 	read = readCsv.read()
 	read.readCsv()
+elif jobType == "--cats":
+	read = readCsv.read()
+	read.getCats()
+elif jobType == "--itemByCat":
+	read = readCsv.read()
+	items = read.getItemsByCat("The New Challengers (NECH) 1st Edition Singles")
+	print items
+
+#The New Challengers (NECH) 1st Edition Singles
