@@ -23,11 +23,11 @@ class read:
 				# 12: Live Quantity
 				lowestPrice = row[6]
 				myPrice = row[9]
+				print(row)
 				if lowestPrice < myPrice:
 					#print(headers)
-					
 					for index,item in enumerate(headers):
-						print(index)
+						print()
 					#print("Item - " + row[2] + "\nMy price - " + myPrice + "\nLowest Price - " + lowestPrice + "\nLive Quantity - " + row[11] + "\n\n")
 	def getCats(self):
 		client = MongoClient('localhost', 27017)

@@ -18,4 +18,3 @@ elif jobType == "--itemByCat":
 	items = read.getItemsByCat("The New Challengers (NECH) 1st Edition Singles")
 	print items
 
-#The New Challengers (NECH) 1st Edition Singles
