@@ -39,7 +39,7 @@ class read:
 		for document in allDocs:
 			if document["Product Category"] not in productCats:
 				productCats.append(document["Product Category"])
-		print productCats
+		print(productCats)
 	
 	def getItemsByCat(self, category):
 		client = MongoClient('localhost', 27017)
@@ -49,8 +49,41 @@ class read:
 		allDocs = collection.find({"Product Category": category })
 		items = []
 		for document in allDocs:
+			del document["_id"]
 			items.append(document)
-		return items
+		return {'items': items}
+
+	def catNetProfit(self, categoryList: list):
+		client = MongoClient('localhost', 27017)
+		db = client.TT
+		collection = db.sales
+
+		mongoQuery = { "$in": categoryList }
+		allDocs = collection.find({"Product Category": mongoQuery })
+		netProfit = 0
+		for document in allDocs:
+			itemNetProfit = document["Net Profit"]
+			netProfit = netProfit + float(itemNetProfit)
+		return netProfit
+
+	def rollup(self, categoryList: list, rollupType):
+		client = MongoClient('localhost', 27017)
+		db = client.TT
+		collection = db.sales
+		subQuery = {}
+		mongoQuery = {}
+
+		if categoryList:
+			subQuery = { "$in": categoryList }
+			mongoQuery = {"Product Category": subQuery }
+
+		allDocs = collection.find(mongoQuery)
+
+		netProfit = 0
+		for document in allDocs:
+			itemNetProfit = document[rollupType]
+			netProfit = netProfit + float(itemNetProfit)
+		return netProfit
 
 
 

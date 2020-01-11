@@ -16,5 +16,9 @@ elif jobType == "--cats":
 elif jobType == "--itemByCat":
 	read = readCsv.read()
 	items = read.getItemsByCat("The New Challengers (NECH) 1st Edition Singles")
-	print items
+	print(items)
+elif jobType == "--catNetProfit":
+	read = readCsv.read()
+	print(read.catNetProfit(["The New Challengers (NECH) 1st Edition Singles", "Battles of Legend: Relentless Revenge Singles"]))
+	#print items
 
