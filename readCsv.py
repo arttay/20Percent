@@ -101,9 +101,9 @@ class read:
 			print(document.get("Net Profit"))
 
 			if rollUpData.get(productCat) is None:
-				rollUpData[productCat] = document.get("Net Profit")
+				rollUpData[productCat] = round(float(document.get("Net Profit")), 2)
 			elif rollUpData.get(productCat) is not None:
-				rollUpData[productCat] = float(rollUpData[productCat]) + float(document.get("Net Profit"))
+				rollUpData[productCat] = round(float(rollUpData[productCat]), 2) + round(float(document.get("Net Profit")), 2)
 
 		return rollUpData
 
