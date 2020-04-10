@@ -1,5 +1,8 @@
 import csv
 from pymongo import MongoClient
+import json
+
+
 
 class read:
 
@@ -107,8 +110,33 @@ class read:
 
 		return rollUpData
 
+	def organizeCats(self):
+		client = MongoClient('localhost', 27017)
+		db = client.TT
+		collection = db.sales
+		subQuery = {}
+		mongoQuery = {}
+		rollUpData = {}
 
+		allDocs = collection.find(mongoQuery)
 
+		with open('categories.json') as f:
+			data = json.load(f)
+			for document in allDocs:
+				productParentCat = data.get(document.get("Product Category"))
+
+				if rollUpData.get(productParentCat) is None:
+					rollUpData[productParentCat] = {}
+
+					rollUpData[productParentCat][document.get("Product Category")] = round(float(document.get("Net Profit")), 2)
+					
+				elif rollUpData.get(productParentCat) is not None:
+
+					if rollUpData[productParentCat].get(document.get("Product Category")) is None:
+						rollUpData[productParentCat][document.get("Product Category")] = round(float(document.get("Net Profit")), 2)
+					else:
+						rollUpData[productParentCat][document.get("Product Category")] = round(float(rollUpData[productParentCat][document.get("Product Category")]), 2) + round(float(document.get("Net Profit")), 2)
+		return rollUpData
 
 
 

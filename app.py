@@ -43,6 +43,13 @@ def allcats():
 	items = read.allCats()
 	return jsonify(items)
 
+@app.route('/orgCats', methods=['GET'])
+def orgCats():	
+	read = readCsv.read()
+	items = read.organizeCats()
+	print(jsonify(items))
+	return jsonify(items)
+
 
 
 app.run()

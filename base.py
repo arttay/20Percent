@@ -24,5 +24,8 @@ elif jobType == "--catNetProfit":
 elif jobType == "--allCats":
 	read = readCsv.read()
 	print(read.allCats())
-	#print items
+elif jobType == "--orgCats":
+	read = readCsv.read()
+	print(read.organizeCats())
+
 
