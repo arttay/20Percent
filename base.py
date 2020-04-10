@@ -15,10 +15,14 @@ elif jobType == "--cats":
 	read.getCats()
 elif jobType == "--itemByCat":
 	read = readCsv.read()
-	items = read.getItemsByCat("The New Challengers (NECH) 1st Edition Singles")
+	items = read.getItemsByCat("Theros: Beyond Death Foil Single")
 	print(items)
 elif jobType == "--catNetProfit":
 	read = readCsv.read()
-	print(read.catNetProfit(["The New Challengers (NECH) 1st Edition Singles", "Battles of Legend: Relentless Revenge Singles"]))
+	print(read.catNetProfit(["Theros: Beyond Death Singles", "Theros: Beyond Death Foil Single"]))
+	#print items
+elif jobType == "--allCats":
+	read = readCsv.read()
+	print(read.allCats())
 	#print items
 

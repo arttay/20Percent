@@ -37,6 +37,12 @@ def rollup():
 	items = read.rollup(result, rollup_type)
 	return str(items)
 
+@app.route('/allCats', methods=['GET'])
+def allcats():	
+	read = readCsv.read()
+	items = read.allCats()
+	return jsonify(items)
+
 
 
 app.run()

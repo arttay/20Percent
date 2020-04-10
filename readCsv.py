@@ -85,6 +85,28 @@ class read:
 			netProfit = netProfit + float(itemNetProfit)
 		return netProfit
 
+	def allCats(self):
+		client = MongoClient('localhost', 27017)
+		db = client.TT
+		collection = db.sales
+		subQuery = {}
+		mongoQuery = {}
+		rollUpData = {}
+
+		allDocs = collection.find(mongoQuery)
+
+		for document in allDocs:
+			productCat = document.get("Product Category")
+
+			print(document.get("Net Profit"))
+
+			if rollUpData.get(productCat) is None:
+				rollUpData[productCat] = document.get("Net Profit")
+			elif rollUpData.get(productCat) is not None:
+				rollUpData[productCat] = float(rollUpData[productCat]) + float(document.get("Net Profit"))
+
+		return rollUpData
+
 
 
 
