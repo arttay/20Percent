@@ -1,10 +1,20 @@
 import csv
 from pymongo import MongoClient
 import json
+import requests
 
 
 
 class read:
+
+	def tcg(self):
+		url = 'http://api.tcgplayer.com/v1.32.0/catalog/products?groupId=1490&limit=900'
+		headers = {
+			'Authorization': '',
+			'Accept': 'application/json'
+		}
+
+
 
 	def readCsv(self):
 		with open ("Inventory.csv") as csv_file:

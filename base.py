@@ -27,5 +27,9 @@ elif jobType == "--allCats":
 elif jobType == "--orgCats":
 	read = readCsv.read()
 	print(read.organizeCats())
+elif jobType == "--tcg":
+	read = readCsv.read()
+	read.tcg()
+	# print(read.organizeCats())
 
 
